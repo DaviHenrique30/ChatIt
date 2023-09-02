@@ -15,20 +15,23 @@ Projeto com objetivo criar um aplicativo de mensagens
   Link
 </a>
 
+# Requisitos
+Autenticação
+Mvp
+Armazenamento
+Notificação Push
+Biometria
+Menu
+Grade
+L17n (Internacionalização)
+Navigation bar
+Algoritmo de busca
+
+
 # Estrutura de dados
 
 ```s 
 
 ```
 
-```s
 
-```
-
-```s
-
-```
-
-```s
-
-```
