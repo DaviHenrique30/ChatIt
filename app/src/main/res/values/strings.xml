@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ChatApp</string>
+    <string name="btnEnter">Entrar</string>
+    <string name="toRegister">Ainda não possui uma conta? Faça uma!</string>
+    <string name="txtToLogin">Já possui uma conta? faça login!</string>
+    <string name="btnRegister">Registrar</string>
+    <string name="btnDesconect">Desconectar</string>
+</resources>
