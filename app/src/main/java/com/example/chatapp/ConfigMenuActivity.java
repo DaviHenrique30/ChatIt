@@ -41,7 +41,7 @@ public class ConfigMenuActivity extends AppCompatActivity {
 
 
     }
-
+//PUXAR EMAIL E NOME
     @Override
     protected void onStart() {
         super.onStart();

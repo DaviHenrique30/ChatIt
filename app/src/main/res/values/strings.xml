@@ -5,4 +5,9 @@
     <string name="txtToLogin">Já possui uma conta? faça login!</string>
     <string name="btnRegister">Registrar</string>
     <string name="btnDesconect">Desconectar</string>
+    <string name="menuMessages">Mensagens</string>
+    <string name="menuContacts">Contatos</string>
+    <string name="menuMenu">Menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

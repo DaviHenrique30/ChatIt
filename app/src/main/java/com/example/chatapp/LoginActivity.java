@@ -3,9 +3,20 @@ package com.example.chatapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -39,14 +50,21 @@ public class LoginActivity extends AppCompatActivity {
         xEditEmail = findViewById(R.id.edit_Email);
         xTxtToRegister = findViewById(R.id.txtToRegister);
 
+        //PEDIR PERMISSÃO PARA MANDAR NOTIFICAÇÕES
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(LoginActivity.this,
+                    Manifest.permission.POST_NOTIFICATIONS) !=
+                    PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(LoginActivity.this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);}}
+
         //LEVAR PARA A TELA DE REGISTRO
         xTxtToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+                startActivity(intent);}});
 
         //BOTÃO ENTER
         xBtnEnter.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     snackbar.setTextColor(Color.BLACK);
                     snackbar.show();
                 }else {
-                    AutenticarUsuario(v);
-                }
-            }
-        });
+                    AutenticarUsuario(v);}}});
 
 
     }
@@ -87,6 +102,14 @@ public class LoginActivity extends AppCompatActivity {
                             TelaPrincipal();
                         }
                     },3000);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            notification();
+                        }
+                    },3000);
+
                 }else {
                     String erro;
                     try {
@@ -118,8 +141,35 @@ public class LoginActivity extends AppCompatActivity {
 
     //IR PARA A MAIN
     private void TelaPrincipal(){
-        Intent intent = new Intent(LoginActivity.this,ConfigMenuActivity.class);
+        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
     }
+
+    //MANDAR NOTIFICAÇÃO DE LOGIN CONCLUIDO
+    private void notification(){        
+        String chanelID = "CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(getApplicationContext(), chanelID);
+        builder.setSmallIcon(R.drawable.icon_notification)
+                .setContentTitle("Login")
+                .setContentText("Login Realizado com sucesso!!")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel =
+                    notificationManager.getNotificationChannel(chanelID);
+            if (notificationChannel == null) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(chanelID,
+                        "Some description", importance);
+                notificationChannel.setLightColor(Color.GREEN);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+        }
+        notificationManager.notify(0, builder.build());}
 }

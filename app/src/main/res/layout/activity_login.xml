@@ -11,14 +11,14 @@
         android:id="@+id/edit_Email"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="275dp"
         android:background="@drawable/btn_rounded"
-        android:hint="Digite seu email"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         android:drawableRight="@drawable/icon_email"
         android:ems="10"
+        android:hint="Digite seu email"
         android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -90,5 +90,18 @@
         app:layout_constraintStart_toStartOf="@+id/txtToRegister"
         app:layout_constraintTop_toBottomOf="@+id/txtToRegister"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icon_chatit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
