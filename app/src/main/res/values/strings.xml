@@ -8,6 +8,23 @@
     <string name="menuMessages">Mensagens</string>
     <string name="menuContacts">Contatos</string>
     <string name="menuMenu">Menu</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="DigiteSenha">Digite sua senha</string>
+    <string name="DigiteEmail">Digite seu email</string>
+    <string name="DigiteNome">Digite seu nome</string>
+
+
+    <string name="PreencherCampos">Preencha todos os campos!</string>
+    <string name="LoginExito">Login realizado com sucesso</string>
+    <string name="LoginError">Erro ao logar usuário</string>
+    <string name="welcome">Seja Bem Vindo!</string>
+    <string name="LoginExitoNotification">Seu Login foi Realizado com sucesso!!</string>
+    <string name="CadastroExito">Cadastro realizado com sucesso</string>
+    <string name="EnterCorrectPassword">Insira uma senha com no mínimo 6 digitos!</string>
+    <string name="EmailJaExiste">Email inserido já existe!</string>
+    <string name="EmailInvalido">Email inválido</string>
+    <string name="CadastroErro">Erro ao cadastrar usuário</string>
+    <string name="CadastroExitoNotification">Seu Cadastro foi Realizado com sucesso!!</string>
+    <string name="Perfil">Perfil</string>
+    <string name="btnSalvar">Salvar</string>
+    <string name="NomeUsuario">Nome do Contato</string>
 </resources>

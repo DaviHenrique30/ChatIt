@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChatApp</string>
+    <string name="btnEnter">Enter</string>
+    <string name="toRegister">Still dont have a account? Make one!</string>
+    <string name="txtToLogin">Already have a account? sign in!</string>
+    <string name="btnRegister">Register</string>
+    <string name="btnDesconect">Log Off</string>
+    <string name="menuMessages">Messages</string>
+    <string name="menuContacts">Contacts</string>
+    <string name="menuMenu">Menu</string>
+    <string name="DigiteSenha">Insert your password</string>
+    <string name="DigiteEmail">insert your email</string>
+    <string name="DigiteNome">insert your name</string>
+
+    <string name="PreencherCampos">Fill in all fields!</string>
+    <string name="LoginExito">Login successfully</string>
+    <string name="LoginError">Login error</string>
+    <string name="welcome">Wellcome!</string>
+    <string name="LoginExitoNotification">Your login was successful!!</string>
+    <string name="CadastroExito">Your register was successful!!</string>
+    <string name="EnterCorrectPassword">Enter a password with at least 6 digits!</string>
+    <string name="EmailJaExiste">Email entered already exists!</string>
+    <string name="EmailInvalido">Invalid Email!</string>
+    <string name="CadastroErro">Error registering user!</string>
+    <string name="CadastroExitoNotification">Your registration was successful!!</string>
+    <string name="Perfil">Profile</string>
+</resources>

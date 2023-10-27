@@ -3,9 +3,15 @@ package com.example.chatapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -38,13 +44,14 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText xEditEmail, xEditPassword, xEditUsername;
     private AppCompatButton xBtnRegister;
     private ProgressBar xProgressBar;
-    String[] mensagens = {"Preencha todos os campos!", "Cadastro realizado com sucesso"};
+    String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
     String usuarioID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getWindow().setStatusBarColor(ContextCompat.getColor(RegisterActivity.this,R.color.blue));
         //INICIO DOS COMPONENTES
         xTxtToLogin = findViewById(R.id.txtToLogin);
         xEditUsername = findViewById(R.id.edit_Name);
@@ -109,13 +116,20 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             },3000);
 
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    notification();
+                                }
+                            },3000);
+
                             //Tratamento de erros
                         }else {
                             String erro;
                             try {
                                 throw task.getException();
                             }catch (FirebaseAuthWeakPasswordException e) {
-                                erro = "Insira uma senha com no mínimo 6 digitos!";
+                                erro = "Insira uma senha com no mínimo 6 digitos";
                             }catch (FirebaseAuthUserCollisionException e) {
                                 erro = "Email inserido já existe!";
                             }catch (FirebaseAuthInvalidCredentialsException e){
@@ -157,9 +171,37 @@ public class RegisterActivity extends AppCompatActivity {
 
     //IR PARA A MAIN
     private void TelaPrincipal(){
-        Intent intent = new Intent(RegisterActivity.this,ConfigMenuActivity.class);
+        Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
     }
+
+    //MANDAR NOTIFICAÇÃO DE CADASTRO CONCLUIDO
+    private void notification(){
+        String chanelID = "CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(getApplicationContext(), chanelID);
+        builder.setSmallIcon(R.drawable.icon_notification)
+                .setContentTitle("Seja bem vindo!")
+                .setContentText("Cadastro realizado com sucesso!!")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel =
+                    notificationManager.getNotificationChannel(chanelID);
+            if (notificationChannel == null) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(chanelID,
+                        "Some description", importance);
+                notificationChannel.setLightColor(Color.GREEN);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+        }
+        notificationManager.notify(0, builder.build());}
 }
+
 

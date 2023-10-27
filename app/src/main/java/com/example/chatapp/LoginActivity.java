@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getWindow().setStatusBarColor(ContextCompat.getColor(LoginActivity.this,R.color.blue));
 
         xBtnEnter = findViewById(R.id.btnEnter);
         xProgressBar = findViewById(R.id.progressBarLogin);
@@ -135,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
 
         if (usuarioAtual != null){
-            TelaPrincipal();
+            TelaLoginBiometrico();
         }
     }
 
@@ -146,14 +147,21 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+    //IR PARA A BIOMETRIA
+    private void TelaLoginBiometrico(){
+        Intent intent = new Intent(LoginActivity.this,BiometricLogin.class);
+        startActivity(intent);
+        finish();
+    }
+
     //MANDAR NOTIFICAÇÃO DE LOGIN CONCLUIDO
     private void notification(){        
         String chanelID = "CHANNEL_ID_NOTIFICATION";
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(getApplicationContext(), chanelID);
         builder.setSmallIcon(R.drawable.icon_notification)
-                .setContentTitle("Login")
-                .setContentText("Login Realizado com sucesso!!")
+                .setContentTitle("Seja bem vindo!")
+                .setContentText("Login realizado com sucesso!!")
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManager notificationManager =
